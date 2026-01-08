@@ -1,4 +1,4 @@
-/* Reset some defaults */
+/* Reset defaults */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,43 +9,56 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fdfdfd;
   color: #333;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
   line-height: 1.6;
 }
 
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  color: #222;
-  margin-bottom: 30px;
-  font-weight: 700;
+/* Container for sidebar + content */
+.container {
+  display: flex;
+  min-height: 100vh;
 }
 
-p {
-  font-size: 1.2rem;
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #222;
+  color: #fff;
+  padding: 30px 20px;
+  flex-shrink: 0;
+}
+
+.sidebar h2 {
   margin-bottom: 20px;
 }
 
-nav {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-nav a {
-  display: inline-block;
-  margin: 0 15px;
-  font-weight: 600;
-  color: #0077cc;
+.sidebar nav a {
+  display: block;
+  margin-bottom: 15px;
+  color: #fff;
   text-decoration: none;
+  font-weight: 600;
   transition: color 0.3s;
 }
 
-nav a:hover {
-  color: #005fa3;
+.sidebar nav a:hover {
+  color: #00bfff;
 }
 
+/* Main content */
+.content {
+  flex: 1;
+  padding: 40px 30px;
+}
+
+/* Page headings */
+.content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #222;
+}
+
+/* Video card */
 .video {
   margin-bottom: 50px;
   padding: 15px;
@@ -82,10 +95,25 @@ nav a:hover {
   background-color: #005fa3;
 }
 
-/* Responsive for mobile */
-@media screen and (max-width: 600px) {
-  h1 {
-    font-size: 2rem;
+/* Responsive design for mobile */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .sidebar nav a {
+    display: inline-block;
+    margin: 0 10px 10px 10px;
+  }
+
+  .content {
+    padding: 20px;
   }
 
   .video iframe {
