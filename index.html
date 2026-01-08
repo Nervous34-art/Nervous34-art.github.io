@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fail Vault</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -32,57 +38,68 @@
       <h1>Welcome to Fail Vault</h1>
       <p>Browse the funniest fails organized by category. Click a category in the sidebar to get started!</p>
 
-      <!-- Example Video -->
+      <!-- Example Videos -->
       <div class="video">
         <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
-        <p>Example fail description.</p>
+        <p>Epic fail compilation #1</p>
         <a href="AFFILIATE_LINK_1" target="_blank">Check it out</a>
       </div>
-    </main>
 
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        <p>Hilarious kitchen fails #2</p>
+        <a href="AFFILIATE_LINK_2" target="_blank">Shop products to avoid this</a>
+      </div>
+
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+        <p>Funny pet fails #3</p>
+        <a href="AFFILIATE_LINK_3" target="_blank">Buy helpful items</a>
+      </div>
+
+    </main>
   </div>
 
- <!-- JS -->
-<script>
-  // Sidebar toggle
-  const toggleBtn = document.getElementById('toggleBtn');
-  const sidebar = document.getElementById('sidebar');
-  toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-  });
+  <!-- JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Sidebar toggle
+      const toggleBtn = document.getElementById('toggleBtn');
+      const sidebar = document.getElementById('sidebar');
+      toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+      });
 
-  // Auto-active link
-  const links = document.querySelectorAll('.sidebar nav a');
-  const current = window.location.pathname.split("/").pop();
-  links.forEach(link => {
-    link.classList.remove('active');
-    if(link.getAttribute('href') === current) {
-      link.classList.add('active');
-    }
-  });
+      // Auto-active link
+      const links = document.querySelectorAll('.sidebar nav a');
+      const current = window.location.pathname.split("/").pop();
+      links.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === current) {
+          link.classList.add('active');
+        }
+      });
 
-  // Theme toggle with persistence
-  const themeBtn = document.getElementById('themeToggle');
+      // Theme toggle with persistence
+      const themeBtn = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('theme');
+      if(savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeBtn.textContent = 'Light Mode';
+      }
 
-  // Load saved theme on page load
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark');
-    themeBtn.textContent = 'Light Mode';
-  }
-
-  // Toggle theme and save choice
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    if (document.body.classList.contains('dark')) {
-      themeBtn.textContent = 'Light Mode';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      themeBtn.textContent = 'Dark Mode';
-      localStorage.setItem('theme', 'light');
-    }
-  });
-</script>
+      themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        if(document.body.classList.contains('dark')){
+          themeBtn.textContent = 'Light Mode';
+          localStorage.setItem('theme','dark');
+        } else {
+          themeBtn.textContent = 'Dark Mode';
+          localStorage.setItem('theme','light');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
