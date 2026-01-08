@@ -1,4 +1,6 @@
-/* Reset defaults */
+/* =========================
+   RESET DEFAULTS
+========================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,13 +14,18 @@ body {
   line-height: 1.6;
 }
 
-/* Container for sidebar + content */
+/* =========================
+   CONTAINER FLEX
+========================= */
 .container {
   display: flex;
   min-height: 100vh;
+  flex-direction: row; /* ensures sidebar + content are side by side */
 }
 
-/* Sidebar */
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar {
   width: 240px;
   background: linear-gradient(180deg, #222 0%, #333 100%);
@@ -65,9 +72,11 @@ body {
   box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
 }
 
-/* Main content */
+/* =========================
+   MAIN CONTENT
+========================= */
 .content {
-  flex: 1;
+  flex: 1; /* take remaining space */
   padding: 40px 30px;
 }
 
@@ -79,7 +88,9 @@ body {
   color: #222;
 }
 
-/* Video card */
+/* =========================
+   VIDEO CARDS
+========================= */
 .video {
   margin-bottom: 50px;
   padding: 15px;
@@ -116,16 +127,20 @@ body {
   background-color: #005fa3;
 }
 
-/* Responsive design for mobile */
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media screen and (max-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: column; /* stack sidebar above content */
   }
 
   .sidebar {
     width: 100%;
     padding: 20px;
     text-align: center;
+    height: auto;
+    position: relative;
   }
 
   .sidebar nav a {
