@@ -5,13 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const links = document.querySelectorAll('.sidebar nav a');
   const current = window.location.pathname.split("/").pop();
 
-  // Sidebar toggle
+  // Mini sidebar toggle
   toggleBtn.addEventListener('click', () => {
-    if(window.innerWidth <= 768){
-      sidebar.classList.toggle('active'); // mobile slide
-    } else {
-      sidebar.classList.toggle('collapsed'); // desktop collapse
-    }
+    sidebar.classList.toggle('collapsed');
   });
 
   // Auto-active link
