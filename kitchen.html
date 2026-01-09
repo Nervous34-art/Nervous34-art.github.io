@@ -3,109 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kitchen Fails - Fail Vault</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Fail Vault</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle">Dark Mode</button>
 
   <div class="container">
 
+    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-      <button class="toggle-btn" id="toggleBtn">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="toggle-btn" id="toggleBtn"><i class="fas fa-bars"></i></button>
       <h2>Categories</h2>
       <nav>
-        <a href="index.html"><i class="fas fa-home"></i><span> Home</span></a>
-        <a href="kitchen.html"><i class="fas fa-utensils"></i><span> Kitchen Fails</span></a>
-        <a href="pets.html"><i class="fas fa-cat"></i><span> Pet Fails</span></a>
-        <a href="office.html"><i class="fas fa-laptop"></i><span> Office Fails</span></a>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="kitchen.html"><i class="fas fa-utensils"></i> Kitchen Fails</a>
+        <a href="pets.html"><i class="fas fa-cat"></i> Pet Fails</a>
+        <a href="office.html"><i class="fas fa-laptop"></i> Office Fails</a>
       </nav>
     </aside>
 
+    <!-- Main content -->
     <main class="content">
-      <h1>Kitchen Fails</h1>
-      <p>Check out the funniest kitchen fails and grab the items that could have prevented them!</p>
+      <h1>Welcome to Fail Vault</h1>
+      <p>Browse the funniest fails organized by category. Click a category in the sidebar to get started!</p>
 
+      <!-- Example Video -->
       <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/oHg5SJYRHA0" 
-          title="Stuck Pan Disaster - Kitchen Fail"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Oops! Stuck pan disaster - when cooking spray fails and everything sticks to the pan.</p>
-        <a href="https://example-affiliate-link.com/non-stick-pan" target="_blank" rel="noopener">Get a non-stick pan</a>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        <p>Example fail description.</p>
+        <a href="AFFILIATE_LINK_1" target="_blank">Check it out</a>
       </div>
-
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/3JZ_D3ELwOQ" 
-          title="Knife Slip Chaos - Kitchen Safety Fail"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Knife slip chaos! Cutting veggies turns into a dangerous game when using a dull knife.</p>
-        <a href="https://example-affiliate-link.com/chef-knife" target="_blank" rel="noopener">Buy a safe chef knife</a>
-      </div>
-
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/hY7m5jjJ9mM" 
-          title="Microwave Popcorn Explosion"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Microwave popcorn explosion - when you forget to listen for the pops and chaos ensues!</p>
-        <a href="https://example-affiliate-link.com/microwave-bowl" target="_blank" rel="noopener">Get a microwave-safe bowl</a>
-      </div>
-
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/V9BZ7C2l7No" 
-          title="Overflowing Pot Boiling Disaster"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Pasta pot overflow - the classic "I'll just walk away for a minute" kitchen fail.</p>
-        <a href="https://example-affiliate-link.com/large-pot" target="_blank" rel="noopener">Get a larger cooking pot</a>
-      </div>
-
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/Ct6BUPvE2sM" 
-          title="Blender Lid Fail - Smoothie Explosion"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Blender lid fail - when you forget to secure the lid and create a fruity ceiling mural.</p>
-        <a href="https://example-affiliate-link.com/blender" target="_blank" rel="noopener">Get a secure blender</a>
-      </div>
-
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/M4P2KzKqyU0" 
-          title="Baking Measurement Disaster"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Baking measurement disaster - confusing tablespoons with cups results in a cookie catastrophe!</p>
-        <a href="https://example-affiliate-link.com/measuring-cups" target="_blank" rel="noopener">Buy measuring cups</a>
-      </div>
-
     </main>
+
   </div>
 
-  <script src="scripts.js"></script>
+<!-- JS -->
+<script>
+  // Sidebar toggle
+  const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // Auto-active link
+  const links = document.querySelectorAll('.sidebar nav a');
+  const current = window.location.pathname.split("/").pop();
+  links.forEach(link => {
+    link.classList.remove('active');
+    if(link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
+  });
+
+  // Theme toggle with persistence
+  const themeBtn = document.getElementById('themeToggle');
+
+  // Load saved theme on page load
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    themeBtn.textContent = 'Light Mode';
+  }
+
+  // Toggle theme and save choice
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+      themeBtn.textContent = 'Light Mode';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeBtn.textContent = 'Dark Mode';
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
 </body>
 </html>
