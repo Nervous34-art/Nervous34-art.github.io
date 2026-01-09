@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeBtn = document.getElementById("themeToggle");
   const links = document.querySelectorAll(".sidebar nav a");
 
+  console.log("Script loaded. Theme button found:", themeBtn);
+
   /* =========================
      SIDEBAR TOGGLE (with icon update)
   ========================= */
@@ -38,6 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
      THEME SYSTEM
   ========================= */
   if (themeBtn) {
+    console.log("Theme button event listener being added...");
+    
+    // Force button to be visible and clickable
+    themeBtn.style.zIndex = "10000";
+    themeBtn.style.pointerEvents = "auto";
+    themeBtn.style.opacity = "1";
+    
+    // Test if button is clickable
+    themeBtn.addEventListener("mousedown", () => {
+      console.log("Theme button CLICKED!");
+    });
+
     // Load saved theme
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -53,10 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =========================
        THEME TOGGLE
     ========================= */
-    themeBtn.addEventListener("click", () => {
+    themeBtn.addEventListener("click", (e) => {
+      console.log("Theme toggle clicked!", e);
+      e.stopPropagation(); // Prevent event bubbling
+      
       const isDark = document.body.classList.toggle("dark");
       themeBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
       localStorage.setItem("theme", isDark ? "dark" : "light");
     });
+
+    // Also allow Enter key for accessibility
+    themeBtn.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        const isDark = document.body.classList.toggle("dark");
+        themeBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      }
+    });
+  } else {
+    console.error("Theme button not found!");
   }
 });
