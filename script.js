@@ -1,39 +1,48 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const toggleBtn = document.getElementById('toggleBtn');
-  const sidebar = document.getElementById('sidebar');
-  const themeBtn = document.getElementById('themeToggle');
-  const links = document.querySelectorAll('.sidebar nav a');
-  const current = window.location.pathname.split("/").pop();
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("toggleBtn");
+  const themeBtn = document.getElementById("themeToggle");
+  const links = document.querySelectorAll(".sidebar nav a");
 
-  // Mini sidebar toggle
-  toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-  });
-
-  // Auto-active link
-  links.forEach(link => {
-    link.classList.remove('active');
-    if(link.getAttribute('href') === current) {
-      link.classList.add('active');
-    }
-  });
-
-  // Load saved theme
-  const savedTheme = localStorage.getItem('theme');
-  if(savedTheme === 'dark'){
-    document.body.classList.add('dark');
-    themeBtn.textContent = 'Light Mode';
+  /* =========================
+     SIDEBAR TOGGLE
+  ========================= */
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("collapsed");
+    });
   }
 
-  // Theme toggle
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    if(document.body.classList.contains('dark')){
-      themeBtn.textContent = 'Light Mode';
-      localStorage.setItem('theme','dark');
-    } else {
-      themeBtn.textContent = 'Dark Mode';
-      localStorage.setItem('theme','light');
-    }
+  /* =========================
+     ACTIVE LINK
+  ========================= */
+  const currentPage =
+    window.location.pathname.split("/").pop() || "index.html";
+
+  links.forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === currentPage
+    );
   });
+
+  /* =========================
+     THEME LOAD
+  ========================= */
+  if (themeBtn) {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.textContent = "Light Mode";
+    }
+
+    /* =========================
+       THEME TOGGLE
+    ========================= */
+    themeBtn.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark");
+      themeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  }
 });
