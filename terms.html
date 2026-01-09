@@ -19,15 +19,16 @@
       </button>
       <h2>Categories</h2>
       <nav>
-        <a href="index.html"><i class="fas fa-home"></i><span> Home</span></a>
-        <a href="kitchen.html"><i class="fas fa-utensils"></i><span> Kitchen Fails</span></a>
-        <a href="pets.html"><i class="fas fa-cat"></i><span> Pet Fails</span></a>
-        <a href="office.html"><i class="fas fa-laptop"></i><span> Office Fails</span></a>
-        <div class="legal-links">
-          <a href="privacy.html"><i class="fas fa-user-shield"></i><span> Privacy</span></a>
-          <a href="terms.html"><i class="fas fa-file-contract"></i><span> Terms</span></a>
-        </div>
-      </nav>
+  <a href="index.html" data-tooltip="Home"><i class="fas fa-home"></i><span> Home</span></a>
+  <a href="kitchen.html" data-tooltip="Kitchen Fails"><i class="fas fa-utensils"></i><span> Kitchen Fails</span></a>
+  <a href="pets.html" data-tooltip="Pet Fails"><i class="fas fa-cat"></i><span> Pet Fails</span></a>
+  <a href="office.html" data-tooltip="Office Fails"><i class="fas fa-laptop"></i><span> Office Fails</span></a>
+  
+  <div class="legal-links">
+    <a href="privacy.html" data-tooltip="Privacy Policy"><i class="fas fa-user-shield"></i><span> Privacy</span></a>
+    <a href="terms.html" data-tooltip="Terms of Use"><i class="fas fa-file-contract"></i><span> Terms</span></a>
+  </div>
+</nav>
     </aside>
 
     <main class="content">
@@ -69,12 +70,30 @@
   </footer>
 
 <script>
-  // Same JavaScript as other pages
-  const toggleBtn = document.getElementById('toggleBtn');
+   // ========== SIDEBAR WITH PERSISTENCE ==========
+  // 1. LOAD SAVED SIDEBAR STATE
   const sidebar = document.getElementById('sidebar');
-  toggleBtn.addEventListener('click', () => {
+  const savedState = localStorage.getItem('sidebarCollapsed');
+  
+  if (savedState === 'true') {
+    sidebar.classList.add('collapsed');
+  }
+  
+  // 2. TOGGLE SIDEBAR & SAVE STATE
+  const toggleBtn = document.getElementById('toggleBtn');
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     sidebar.classList.toggle('collapsed');
+    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
   });
+  
+  // 3. SAVE STATE BEFORE NAVIGATING
+  document.querySelectorAll('.sidebar nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+    });
+  });
+  
 
   const links = document.querySelectorAll('.sidebar nav a');
   const current = window.location.pathname.split("/").pop();
