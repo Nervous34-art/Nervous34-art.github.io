@@ -1,5 +1,5 @@
 /* =========================
-   RESET DEFAULTS
+   RESET
 ========================= */
 * {
   box-sizing: border-box;
@@ -7,16 +7,20 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fdfdfd;
   color: #333;
   line-height: 1.6;
-  transition: background 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* =========================
-   CONTAINER FLEX
+   LAYOUT
 ========================= */
 .container {
   display: flex;
@@ -30,68 +34,69 @@ body {
   width: 240px;
   background: linear-gradient(180deg, #222 0%, #333 100%);
   color: #fff;
-  padding: 30px 20px;
+  padding: 25px 15px;
   flex-shrink: 0;
   border-right: 2px solid #444;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
   position: relative;
 }
 
-/* Collapsed sidebar */
+/* Collapsed state */
 .sidebar.collapsed {
-  width: 60px;
-  padding: 30px 5px;
+  width: 64px;
+  padding: 25px 8px;
 }
 
+/* Sidebar title */
 .sidebar h2 {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   margin-bottom: 25px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #00bfff;
   text-align: center;
-  transition: opacity 0.3s;
+  color: #00bfff;
+  transition: opacity 0.2s ease;
 }
 
 .sidebar.collapsed h2 {
-  opacity: 0; /* hide text in collapsed state */
+  opacity: 0;
+  pointer-events: none;
 }
 
+/* Nav links */
 .sidebar nav a {
   display: flex;
   align-items: center;
-  margin-bottom: 18px;
+  gap: 12px;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: background-color 0.25s, transform 0.25s;
 }
 
 .sidebar nav a i {
-  width: 25px;
+  font-size: 1.1rem;
+  min-width: 24px;
   text-align: center;
 }
 
+/* Hide text when collapsed */
 .sidebar.collapsed nav a span {
-  display: none; /* hide text in collapsed */
+  display: none;
 }
 
+/* Hover & active */
 .sidebar nav a:hover {
-  background: #00bfff;
-  color: #fff;
-  transform: translateX(5px);
+  background-color: #00bfff;
+  transform: translateX(4px);
 }
 
 .sidebar nav a.active {
-  background: #0077cc;
-  color: #fff;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+  background-color: #0077cc;
 }
 
-/* Hamburger button */
+/* Toggle button */
 .toggle-btn {
   background: none;
   border: none;
@@ -107,26 +112,27 @@ body {
 .content {
   flex: 1;
   padding: 40px 30px;
-  transition: margin-left 0.3s;
+  background-color: transparent;
+  transition: background-color 0.3s;
 }
 
 .content h1 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   margin-bottom: 30px;
   text-align: center;
-  color: #222;
 }
 
 /* =========================
    VIDEO CARDS
 ========================= */
 .video {
-  margin-bottom: 50px;
+  margin-bottom: 45px;
   padding: 15px;
-  border: 1px solid #eee;
   border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .video iframe {
@@ -142,14 +148,14 @@ body {
 
 .video a {
   display: inline-block;
-  margin-top: 10px;
-  padding: 8px 15px;
+  margin-top: 12px;
+  padding: 8px 16px;
   background-color: #0077cc;
   color: #fff;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.3s;
+  transition: background-color 0.25s;
 }
 
 .video a:hover {
@@ -157,51 +163,101 @@ body {
 }
 
 /* =========================
-   DARK MODE
+   THEME TOGGLE
+========================= */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  cursor: pointer;
+  z-index: 2000;
+}
+
+/* =========================
+   DARK MODE (GLOBAL & FINAL)
 ========================= */
 body.dark {
   background-color: #121212;
-  color: #f0f0f0;
+  color: #eaeaea;
 }
 
+/* Sidebar */
 body.dark .sidebar {
-  background: #222;
+  background: linear-gradient(180deg, #111 0%, #1e1e1e 100%);
+  border-right-color: #2a2a2a;
 }
 
-body.dark .video {
-  background-color: #1e1e1e;
-  border-color: #333;
+/* Content */
+body.dark .content {
+  background-color: #121212;
 }
 
-body.dark .video a {
+/* Headings */
+body.dark h1,
+body.dark h2,
+body.dark h3 {
+  color: #ffffff;
+}
+
+/* Nav links */
+body.dark .sidebar nav a {
+  color: #eaeaea;
+}
+
+body.dark .sidebar nav a:hover {
   background-color: #00bfff;
+  color: #fff;
 }
 
 body.dark .sidebar nav a.active {
   background-color: #0077cc;
 }
 
+/* Videos */
+body.dark .video {
+  background-color: #1e1e1e;
+  border-color: #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+body.dark .video p {
+  color: #ddd;
+}
+
+body.dark .video a {
+  background-color: #00bfff;
+}
+
+body.dark .video a:hover {
+  background-color: #009acd;
+}
+
+/* Theme toggle */
+body.dark .theme-toggle {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #333;
+}
+
 /* =========================
-   RESPONSIVE DESIGN
+   RESPONSIVE
 ========================= */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
 
-  .sidebar {
-    width: 100%;
-    height: auto;
-    padding: 20px;
-  }
-
+  .sidebar,
   .sidebar.collapsed {
     width: 100%;
   }
 
   .sidebar nav a {
-    display: inline-block;
-    margin: 0 10px 10px 10px;
+    justify-content: center;
   }
 
   .content {
