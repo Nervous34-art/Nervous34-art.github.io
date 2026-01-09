@@ -531,3 +531,31 @@ body.dark .content p {
     font-size: 0.8rem;
   }
 }
+/* TOOLTIPS FOR COLLAPSED SIDEBAR */
+.sidebar.collapsed nav a {
+  position: relative;
+}
+
+/* Show text when hovering over icons */
+.sidebar.collapsed nav a:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 70px; /* Position to the right of icon */
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background: black;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  
+  z-index: 1000;
+}
+
+/* Dark mode tooltip */
+body.dark .sidebar.collapsed nav a:hover::after {
+  background: white;
+  color: black;
+}
