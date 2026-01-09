@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use - Fail Vault</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+
+  <div class="container">
+    <aside class="sidebar" id="sidebar">
+      <button class="toggle-btn" id="toggleBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <h2>Categories</h2>
+      <nav>
+        <a href="index.html"><i class="fas fa-home"></i><span> Home</span></a>
+        <a href="kitchen.html"><i class="fas fa-utensils"></i><span> Kitchen Fails</span></a>
+        <a href="pets.html"><i class="fas fa-cat"></i><span> Pet Fails</span></a>
+        <a href="office.html"><i class="fas fa-laptop"></i><span> Office Fails</span></a>
+        <div class="legal-links">
+          <a href="privacy.html"><i class="fas fa-user-shield"></i><span> Privacy</span></a>
+          <a href="terms.html"><i class="fas fa-file-contract"></i><span> Terms</span></a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Terms of Use</h1>
+      
+      <div class="legal-section">
+        <h2>Acceptance of Terms</h2>
+        <p>By accessing and using Fail Vault, you accept and agree to be bound by these terms.</p>
+        
+        <h2>Content Disclaimer</h2>
+        <p>All videos embedded on this site are the property of their respective owners. Fail Vault does not claim ownership of any third-party content. Videos are embedded using YouTube's official embed functionality.</p>
+        
+        <h2>Entertainment Purpose</h2>
+        <p>Fail Vault is provided for entertainment purposes only. We make no guarantees regarding the accuracy or availability of content.</p>
+        
+        <h2>Third-Party Content</h2>
+        <p>We are not responsible for third-party content or external links. Views and opinions expressed in embedded videos belong to their creators.</p>
+        
+        <h2>Affiliate Links</h2>
+        <p>Links on this site are affiliate links. This means we may earn a commission at no extra cost to you if you make a purchase.</p>
+        
+        <h2>Limitation of Liability</h2>
+        <p>Use of this site is at your own risk. We are not liable for any damages resulting from use of this website.</p>
+        
+        <p><em>Last Updated: January 2026</em></p>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>
+      © 2026 Fail Vault · 
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Terms</a>
+    </p>
+    <p class="disclaimer">
+      Affiliate Disclosure: Some links may earn us a commission at no extra cost to you.
+    </p>
+  </footer>
+
+<script>
+  // Same JavaScript as other pages
+  const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  const links = document.querySelectorAll('.sidebar nav a');
+  const current = window.location.pathname.split("/").pop();
+  links.forEach(link => {
+    link.classList.remove('active');
+    if(link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
+  });
+
+  const themeBtn = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    themeBtn.textContent = '☀️ Light Mode';
+  }
+
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+      themeBtn.textContent = '☀️ Light Mode';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeBtn.textContent = '🌙 Dark Mode';
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
+</body>
+</html>
