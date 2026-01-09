@@ -25,6 +25,7 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
 
 /* =========================
@@ -139,16 +140,36 @@ body {
 }
 
 /* =========================
+   LEGAL LINKS IN SIDEBAR
+========================= */
+.legal-links {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.legal-links a {
+  color: #bbb !important;
+  font-size: 0.9rem;
+}
+
+.legal-links a:hover {
+  background: rgba(0, 191, 255, 0.2) !important;
+}
+
+/* =========================
    MAIN CONTENT - ADJUSTED FOR FIXED SIDEBAR
 ========================= */
 .content {
   flex: 1;
-  padding: 40px 32px;
+  padding: 40px 40px 80px 32px; /* Added bottom padding for footer */
   transition: margin-left 0.3s ease;
   position: relative;
   margin-left: 240px;
   width: calc(100% - 240px);
   min-height: 100vh;
+  box-sizing: border-box;
+  overflow-wrap: break-word; /* Prevent text overflow */
 }
 
 /* Adjust content when sidebar is collapsed */
@@ -167,6 +188,48 @@ body {
   text-align: center;
   margin-bottom: 30px;
   color: #555;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* =========================
+   LEGAL PAGES CONTENT
+========================= */
+.legal-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+body.dark .legal-section {
+  background: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.legal-section h2 {
+  color: #0077cc;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+body.dark .legal-section h2 {
+  color: #00bfff;
+}
+
+.legal-section p {
+  text-align: left;
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.legal-section em {
+  color: #777;
+  font-size: 0.9rem;
 }
 
 /* =========================
@@ -208,6 +271,87 @@ body {
 
 .video a:hover {
   background: #005fa3;
+}
+
+/* =========================
+   CONTENT DISCLAIMER (Above videos)
+========================= */
+.content-disclaimer-small {
+  font-size: 0.9rem;
+  color: #888;
+  text-align: center;
+  margin-bottom: 20px;
+  font-style: italic;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+body.dark .content-disclaimer-small {
+  color: #aaa;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 0.9rem;
+  color: #777;
+  background: #f9f9f9;
+  border-top: 1px solid #eee;
+  width: calc(100% - 240px);
+  margin-left: 240px;
+  box-sizing: border-box;
+  transition: width 0.3s ease, margin-left 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+body.dark .footer {
+  background: #1a1a1a;
+  color: #aaa;
+  border-top: 1px solid #333;
+}
+
+/* When sidebar is collapsed */
+.sidebar.collapsed ~ .footer {
+  width: calc(100% - 80px);
+  margin-left: 80px;
+}
+
+.footer a {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+body.dark .footer a {
+  color: #00bfff;
+}
+
+.footer a:hover {
+  text-decoration: none;
+}
+
+.footer p {
+  margin-bottom: 10px;
+  text-align: center;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.footer .disclaimer,
+.footer .content-disclaimer {
+  font-size: 0.85rem;
+  color: #888;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.dark .footer .disclaimer,
+body.dark .footer .content-disclaimer {
+  color: #999;
 }
 
 /* =========================
@@ -327,10 +471,15 @@ body.dark .content p {
     height: auto;
   }
 
+  .legal-links {
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
   .content {
     margin-left: 0 !important;
     width: 100% !important;
-    padding: 24px 16px;
+    padding: 24px 16px 80px 16px !important;
   }
 
   .container {
@@ -340,7 +489,13 @@ body.dark .content p {
   .video iframe {
     height: 220px;
   }
-  
+
+  .footer {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 20px 15px !important;
+  }
+
   .theme-toggle {
     top: 15px;
     right: 15px;
@@ -352,15 +507,23 @@ body.dark .content p {
 /* Small screens */
 @media (max-width: 480px) {
   .content {
-    padding: 20px 12px;
+    padding: 20px 12px 70px 12px !important;
   }
 
   .content h1 {
     font-size: 1.8rem;
   }
 
+  .legal-section {
+    padding: 20px;
+  }
+
   .video iframe {
     height: 200px;
+  }
+
+  .footer {
+    padding: 15px 12px !important;
   }
 
   .theme-toggle {
