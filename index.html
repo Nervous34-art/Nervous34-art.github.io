@@ -4,27 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fail Vault</title>
-  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle">Dark Mode</button>
 
   <div class="container">
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-      <button class="toggle-btn" id="toggleBtn">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="toggle-btn" id="toggleBtn"><i class="fas fa-bars"></i></button>
       <h2>Categories</h2>
       <nav>
-        <a href="index.html"><i class="fas fa-home"></i><span> Home</span></a>
-        <a href="kitchen.html"><i class="fas fa-utensils"></i><span> Kitchen Fails</span></a>
-        <a href="pets.html"><i class="fas fa-cat"></i><span> Pet Fails</span></a>
-        <a href="office.html"><i class="fas fa-laptop"></i><span> Office Fails</span></a>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="kitchen.html"><i class="fas fa-utensils"></i> Kitchen Fails</a>
+        <a href="pets.html"><i class="fas fa-cat"></i> Pet Fails</a>
+        <a href="office.html"><i class="fas fa-laptop"></i> Office Fails</a>
       </nav>
     </aside>
 
@@ -33,59 +31,57 @@
       <h1>Welcome to Fail Vault</h1>
       <p>Browse the funniest fails organized by category. Click a category in the sidebar to get started!</p>
 
-      <!-- Featured Videos Section -->
+      <!-- Example Video -->
       <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-          title="Epic Kitchen Fail Compilation"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Top 10 kitchen disasters that went viral! Watch how simple cooking tasks turn into hilarious chaos.</p>
-        <a href="https://example-affiliate-link.com/kitchen-fails" target="_blank" rel="noopener">Get Kitchen Gear</a>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        <p>Example fail description.</p>
+        <a href="AFFILIATE_LINK_1" target="_blank">Check it out</a>
       </div>
-      
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/L_jWHffIx5E" 
-          title="Funniest Pet Fails of 2024"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>Cats, dogs, and other pets causing absolute mayhem. These furry friends know how to create unforgettable moments!</p>
-        <a href="https://example-affiliate-link.com/pet-toys" target="_blank" rel="noopener">Shop Pet Toys</a>
-      </div>
-      
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/9bZkp7q19f0" 
-          title="Office Work Fails Compilation"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>From coffee spills to printer disasters, watch the most relatable office fails that every worker can understand.</p>
-        <a href="https://example-affiliate-link.com/office-supplies" target="_blank" rel="noopener">Buy Office Supplies</a>
-      </div>
-      
-      <div class="video">
-        <iframe 
-          src="https://www.youtube.com/embed/J---aiyznGQ" 
-          title="Gaming Fails Montage"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-        <p>The worst gaming moments that turned into legendary fails. Perfect for gamers who appreciate epic fails!</p>
-        <a href="https://example-affiliate-link.com/gaming-gear" target="_blank" rel="noopener">View Gaming Gear</a>
-      </div>
-
     </main>
 
   </div>
 
-  <script src="scripts.js"></script>
+ <!-- JS -->
+<script>
+  // Sidebar toggle
+  const toggleBtn = document.getElementById('toggleBtn');
+  const sidebar = document.getElementById('sidebar');
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // Auto-active link
+  const links = document.querySelectorAll('.sidebar nav a');
+  const current = window.location.pathname.split("/").pop();
+  links.forEach(link => {
+    link.classList.remove('active');
+    if(link.getAttribute('href') === current) {
+      link.classList.add('active');
+    }
+  });
+
+  // Theme toggle with persistence
+  const themeBtn = document.getElementById('themeToggle');
+
+  // Load saved theme on page load
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    themeBtn.textContent = 'Light Mode';
+  }
+
+  // Toggle theme and save choice
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    if (document.body.classList.contains('dark')) {
+      themeBtn.textContent = 'Light Mode';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeBtn.textContent = 'Dark Mode';
+      localStorage.setItem('theme', 'light');
+    }
+  });
+</script>
+
 </body>
 </html>
