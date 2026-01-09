@@ -12,19 +12,19 @@ html, body {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfdfd;
-  color: #333;
-  line-height: 1.6;
-  transition: background-color 0.3s, color 0.3s;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #fdfdfd;
+  color: #222;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* =========================
-   LAYOUT
+   CONTAINER
 ========================= */
 .container {
   display: flex;
   min-height: 100vh;
+  width: 100%;
 }
 
 /* =========================
@@ -32,26 +32,26 @@ body {
 ========================= */
 .sidebar {
   width: 240px;
-  background: linear-gradient(180deg, #222 0%, #333 100%);
+  background: linear-gradient(180deg, #1e1e1e, #2a2a2a);
   color: #fff;
-  padding: 25px 15px;
-  flex-shrink: 0;
-  border-right: 2px solid #444;
+  padding: 20px 15px;
   transition: width 0.3s ease;
+  flex-shrink: 0;
   position: relative;
 }
 
 /* Collapsed state */
 .sidebar.collapsed {
   width: 64px;
-  padding: 25px 8px;
+  padding: 20px 8px;
 }
 
-/* Sidebar title */
+/* Sidebar header */
 .sidebar h2 {
-  font-size: 1.4rem;
-  margin-bottom: 25px;
   text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
   color: #00bfff;
   transition: opacity 0.2s ease;
 }
@@ -61,18 +61,18 @@ body {
   pointer-events: none;
 }
 
-/* Nav links */
+/* Navigation */
 .sidebar nav a {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 12px;
-  border-radius: 8px;
-  color: #fff;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.25s, transform 0.25s;
+  color: #fff;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 
 .sidebar nav a i {
@@ -86,24 +86,34 @@ body {
   display: none;
 }
 
-/* Hover & active */
+/* Hover */
 .sidebar nav a:hover {
-  background-color: #00bfff;
+  background: #00bfff;
   transform: translateX(4px);
 }
 
+/* Active link */
 .sidebar nav a.active {
-  background-color: #0077cc;
+  background: #0077cc;
 }
 
-/* Toggle button */
+/* =========================
+   SIDEBAR TOGGLE BUTTON
+========================= */
 .toggle-btn {
   background: none;
   border: none;
-  color: #fff;
-  font-size: 1.5rem;
   cursor: pointer;
   margin-bottom: 20px;
+}
+
+.toggle-btn .bar {
+  display: block;
+  width: 22px;
+  height: 3px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 2px;
 }
 
 /* =========================
@@ -112,135 +122,120 @@ body {
 .content {
   flex: 1;
   padding: 40px 30px;
-  background-color: transparent;
-  transition: background-color 0.3s;
+  transition: background 0.3s ease;
 }
 
 .content h1 {
   font-size: 2.4rem;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   text-align: center;
+}
+
+.content p {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 /* =========================
    VIDEO CARDS
 ========================= */
 .video {
-  margin-bottom: 45px;
-  padding: 15px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: background-color 0.3s, border-color 0.3s;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: background 0.3s ease;
 }
 
 .video iframe {
   width: 100%;
   height: 360px;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: none;
 }
 
 .video p {
   margin-top: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .video a {
   display: inline-block;
   margin-top: 12px;
-  padding: 8px 16px;
-  background-color: #0077cc;
+  padding: 10px 16px;
+  background: #0077cc;
   color: #fff;
-  border-radius: 6px;
   text-decoration: none;
+  border-radius: 8px;
   font-weight: 600;
-  transition: background-color 0.25s;
+  transition: background 0.25s ease;
 }
 
 .video a:hover {
-  background-color: #005fa3;
+  background: #005fa3;
 }
 
 /* =========================
-   THEME TOGGLE
+   THEME TOGGLE BUTTON
 ========================= */
 .theme-toggle {
   position: fixed;
-  top: 15px;
-  right: 20px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #ffffff;
+  top: 18px;
+  right: 24px;
+  z-index: 9999;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #0077cc;
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  z-index: 2000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
 }
 
 /* =========================
-   DARK MODE (GLOBAL & FINAL)
+   DARK MODE
 ========================= */
 body.dark {
-  background-color: #121212;
-  color: #eaeaea;
+  background: #121212;
+  color: #f0f0f0;
 }
 
-/* Sidebar */
-body.dark .sidebar {
-  background: linear-gradient(180deg, #111 0%, #1e1e1e 100%);
-  border-right-color: #2a2a2a;
-}
-
-/* Content */
 body.dark .content {
-  background-color: #121212;
+  background: transparent;
 }
 
-/* Headings */
-body.dark h1,
-body.dark h2,
-body.dark h3 {
-  color: #ffffff;
+body.dark .sidebar {
+  background: linear-gradient(180deg, #111, #1c1c1c);
 }
 
-/* Nav links */
-body.dark .sidebar nav a {
-  color: #eaeaea;
-}
-
-body.dark .sidebar nav a:hover {
-  background-color: #00bfff;
-  color: #fff;
-}
-
-body.dark .sidebar nav a.active {
-  background-color: #0077cc;
-}
-
-/* Videos */
 body.dark .video {
-  background-color: #1e1e1e;
-  border-color: #2a2a2a;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-}
-
-body.dark .video p {
-  color: #ddd;
+  background: #1e1e1e;
+  box-shadow: none;
 }
 
 body.dark .video a {
-  background-color: #00bfff;
+  background: #00bfff;
+  color: #000;
 }
 
-body.dark .video a:hover {
-  background-color: #009acd;
+body.dark .sidebar nav a:hover {
+  background: #00bfff;
+  color: #000;
 }
 
-/* Theme toggle */
+body.dark .sidebar nav a.active {
+  background: #0077cc;
+}
+
 body.dark .theme-toggle {
-  background-color: #1e1e1e;
-  color: #fff;
-  border-color: #333;
+  background: #00bfff;
+  color: #000;
 }
 
 /* =========================
