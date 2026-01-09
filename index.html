@@ -11,7 +11,7 @@
 <body>
 
   <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="themeToggle">Dark Mode</button>
+  <button class="theme-toggle" id="themeToggle">🌙Dark Mode</button>
 
   <div class="container">
 
@@ -68,17 +68,17 @@
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark');
-    themeBtn.textContent = 'Light Mode';
+    themeBtn.textContent = '☀️Light Mode';
   }
 
   // Toggle theme and save choice
   themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     if (document.body.classList.contains('dark')) {
-      themeBtn.textContent = 'Light Mode';
+      themeBtn.textContent = '☀️Light Mode';
       localStorage.setItem('theme', 'dark');
     } else {
-      themeBtn.textContent = 'Dark Mode';
+      themeBtn.textContent = '🌙Dark Mode';
       localStorage.setItem('theme', 'light');
     }
   });
